@@ -1,0 +1,105 @@
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Slider container - full width */
+.slider-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Slider */
+.slider {
+    display: flex;
+    width: 400%; /* 100% × 4 images */
+    animation: slideAnimation 20s infinite; /* 5 seconds × 4 images */
+}
+
+    /* Pause animation on hover */
+    .slider:hover {
+        animation-play-state: paused;
+    }
+
+/* Individual slides */
+.slide {
+    width: 25%; /* 100% ÷ 4 images */
+    flex-shrink: 0;
+}
+
+    /* Images inside slides */
+    .slide img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+/* Hide mobile images by default (landscape/desktop mode) */
+.mobile-image {
+    display: none !important;
+}
+
+/* Show mobile images in portrait mode */
+@media (orientation: portrait) {
+    .desktop-image {
+        display: none !important;
+    }
+
+    .mobile-image {
+        display: block !important;
+    }
+}
+
+/* Define the sliding animation */
+@keyframes slideAnimation {
+    0%, 20% {
+        transform: translateX(0);
+    }
+
+    25%, 45% {
+        transform: translateX(-25%);
+    }
+
+    50%, 70% {
+        transform: translateX(-50%);
+    }
+
+    75%, 95% {
+        transform: translateX(-75%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+/* Adjustments for smaller screens */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    /* Potentially adjust animation timing or other properties for mobile */
+    .slider {
+        animation: slideAnimation 16s infinite; /* Slightly faster on mobile */
+    }
+}
+/* Navigation dots container */
+.slider-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+    .slider-dot.active {
+        background-color: white;
+    }
